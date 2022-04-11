@@ -1,0 +1,83 @@
+ 
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block body %}
+ <!--Main layout-->
+ 
+  <section>
+    <div class="container dark-grey-text mt-5">
+
+      <!--Grid row-->
+      <div class="row wow fadeIn">
+
+        <!--Grid column-->
+        <div class="col-md-3 mb-4">
+
+          <img src="{{ item.first_image.url }}" class="img-fluid" alt=""  >
+
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-md-7 mb-5">
+
+          <!--Content-->
+          <div class="p-4">
+
+            
+
+            <p class="lead">
+              {% if item.discount_price %}
+                
+
+                  <span class="price"><del>₹{{ item.original_price }}</del>&nbsp;&nbsp;₹{{ item.discount_price }}</span>
+              {% else %}
+                  <span class="price">${{ item.original_price }}</span>
+                
+              
+              {% endif %}   
+            </p>
+
+            <p class="lead font-weight-bold">{{ item.title }}</p>
+
+            <p>{{ item.description }}</p>
+
+            <div class="d-flex justify-content-left">
+              <!-- Default input 
+              <input type="number" value="1" aria-label="Search" class="form-control" style="width: 100px"> -->
+              <a href="{{ item.get_add_to_cart }}">
+              <button class="btn btn-primary btn-md my-0 p " type="submit">Add to cart
+                <span class="fa fa-shopping-cart "></span>
+              </button>
+            </a>
+            &nbsp;&nbsp;&nbsp;
+
+            <a href="{{ item.get_remove_from_cart }}">
+              <button class="btn btn-danger btn-md my-0 p " type="submit">Remove from cart
+                <span class="fa fa-shopping-cart "></span>
+              </button>
+            </a>
+
+            </div>
+
+          </div>
+          <!--Content-->
+
+        </div>
+        <!--Grid column-->
+
+      </div>
+      <!--Grid row-->
+
+      <hr>
+
+     
+
+    </div>
+  </section>
+  <!--Main layout-->
+
+
+  {% endblock body %}

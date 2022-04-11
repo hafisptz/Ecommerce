@@ -1,0 +1,102 @@
+ {% extends 'base.html' %}
+ {% load static %}
+ {% block body %}
+
+
+<section class="w3l-grids-hny-2">
+	<!-- /content-6-section -->
+	<div class="grids-hny-2-mian py-5">
+		<div class="container py-lg-5">
+				
+			<h3 class="hny-title mb-0 text-center">Shop With <span>Us</span></h3>
+			<p class="mb-4 text-center">Handpicked Favourites just for you</p>
+			<div class="welcome-grids row mt-5">
+				
+				{% for cat in category %}
+				<div class="col-lg-2 col-md-4 col-6 welcome-image">
+						<div class="boxhny13">
+								<a href="{% url 'catogorywise_home' id=cat.id %}">
+										<img src="{{ cat.image.url }}" class="img-fluid" alt="" />
+								<div class="boxhny-content">
+									<h3 class="title">Product
+								</div>
+							</a>
+						</div>
+						<h4><a href="{% url 'catogorywise_home' id=cat.id %}">{{ cat.name }}</a></h4>
+
+				</div>
+
+				{% endfor %}
+				
+				
+			</div>
+
+		</div>
+	</div>
+</section>
+<!-- //content-6-section -->
+
+
+<section class="w3l-ecommerce-main">
+	<!-- /products-->
+	<div class="ecom-contenthny py-5">
+		<div class="container py-lg-5">
+			<hr>
+			<div class="ecom-products-grids row mt-lg-5 mt-3">
+
+				{% for item in items %}
+				
+				<div class="col-lg-3 col-6 product-incfhny mt-4">
+					<div class="product-grid2">
+						<div class="product-image2">
+							<a href="{{ item.get_absolute_url }}">
+								<img class="pic-1 img-fluid" src="{{item.first_image.url}}">
+								<img class="pic-2 img-fluid" src="{{item.second_image.url}}">
+							</a>
+							<ul class="social">
+									<li><a href=" {{ item.get_absolute_url }}  " data-tip="Quick View"><span class="fa fa-eye"></span></a></li>
+
+
+
+									<li><a href="{% url 'add_to_cart' id=item.id %}" data-tip="Add to Cart"><span class="fa fa-shopping-bag"></span></a>
+									</li>
+							</ul>
+							<div>
+									
+										
+											
+											
+										<a href="{% url 'add_to_cart' id=item.id %}">	<button type="submit" class=" add-to-cart">
+												Add to Cart
+											</button></a>
+										
+									</div>
+						</div>
+						<div class="product-content">
+							<h3 class="title"><a href="#">{{item.title}} </a></h3>
+							{% if item.discount_price %}
+								
+
+									<span class="price"><del>{{ item.original_price }}</del>{{ item.discount_price }}</span>
+							{% else %}
+									<span class="price">{{ item.original_price }}</span>
+								
+							
+							{% endif %}		
+						</div>
+					</div>
+
+				</div>
+				
+			{% endfor %}
+
+			</div>
+			<!-- //row-->
+		</div>
+	</div>
+</section>
+<!-- //products-->
+
+
+
+{% endblock body%}
